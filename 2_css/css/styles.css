@@ -1,0 +1,18 @@
+.portada {
+    border: 1px solid;
+    text-align: center;
+    background-color: #f1edea;
+}
+
+.portada h1 {
+    font-size: 60px;
+    font-weight: 400;
+}
+
+.portada video {
+    width: 100%;
+}
+
+.gris {
+    color: #5f6368;
+}
