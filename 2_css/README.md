@@ -80,18 +80,7 @@ div {
 }
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
+---
 
 
 ## [Guia de flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
@@ -113,35 +102,13 @@ main {
 /* Recordemos jugar con los tamaños de los contenedores padre y los subcontenedores y juguemos con eso */
 ```
 
----
-
-## Combinadores
-Los combinadores son caracteres que permiten seleccionar elementos en funcion de su relacion con otros elementos en el [DOM](https://www.w3schools.com/whatis/whatis_htmldom.asp)
-
-1. **Combinador descendiente (` `)**: Selecciona todos los elementos que son descendientes de un elemento padre, sin importar que tan profundo esten.
-
-```css
-div p {
-    color: blue;
-}
-```
 
 ---
 
-
-2. **Combinador de hijo directo (`>`)**: Selecciona solo los elementos que son hijos inmediatos de un elemento padre
-
-```css
-div > p {
-    color: red;
-}
-```
-
-
----
 
 ## Pseudoclases
 Las psedoclases son palabras clave que se añaden a los selectores para especificar un estado especial de un elemento. Permiten aplicar estilos bajo ciertas condicioes o estados, por ejemplo, interactuando con un enlace, cuando un formulario esta siendo validado o para seleccionar el primer o ultimo elemento de un contenedor
+
 
 ### Pseudoclase de interaccion de usuario
 - **`:hover`: Se activa cuando el usuario pasa el cursor sobre un elemento**. Este es el más importante y el que más usamos cotidianamente
@@ -152,7 +119,9 @@ button:hover {
 }
 ```
 
+
 ---
+
 
 - `:active`: Se aplica cuando el usuario esta haciendo click en un elemento, como un boton o enlace
 
@@ -208,6 +177,34 @@ tr:nth-child(odd){
 ```css
 a:visited:hover {
     color: orange;
+}
+```
+
+
+
+
+---
+
+
+## Combinadores
+Los combinadores son caracteres que permiten seleccionar elementos en funcion de su relacion con otros elementos en el [DOM](https://www.w3schools.com/whatis/whatis_htmldom.asp)
+
+1. **Combinador descendiente (` `)**: Selecciona todos los elementos que son descendientes de un elemento padre, sin importar que tan profundo esten.
+
+```css
+div p {
+    color: blue;
+}
+```
+
+---
+
+
+2. **Combinador de hijo directo (`>`)**: Selecciona solo los elementos que son hijos inmediatos de un elemento padre
+
+```css
+div > p {
+    color: red;
 }
 ```
 

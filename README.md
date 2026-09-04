@@ -1,4 +1,29 @@
 # Progra III Div132 2026 c2
+---
+
+# Cronograma clases
+- Prox clase CSS II -> Combinadores y continuar desde CSS display
+- Mucho peso a live coding para seguir maquetando
+
+## Clase CSS I
+- pseudoclases
+- flex
+- uds absolutas y relativas
+- estilado basico
+
+## Clase 1
+- HTML hasta [Elementos en Bloque y Elementos en Linea](https://www.w3schools.com/html/html_blocks.asp)
+- **Recordatorio: TODAS las etiquetas en linea iran siempre dentro de etiquetas en bloque. [Leccion W3 Schools](https://www.w3schools.com/html/html_formatting.asp)**
+- Practica sugerida
+    - Hacer una receta de su plato favorito usando las etiquetas HTML que vimos en clase
+    - [Ej de receta](https://comedera.com/receta-de-chipa-pan-paraguayo/)
+
+- Repasar Git
+
+- Proxima clase, repasar dudas hasta elementos en bloque y en linea.
+- Continuamos desde HTML tables, listas y contenedores
+
+---
 
 ## Practicar con Git
 - Instalar [Git Bash](https://git-scm.com/install/windows)
@@ -37,17 +62,3 @@
     git push origin main
     ```
 
----
-
-# Cronograma clases
-## Clase 1
-- HTML hasta [Elementos en Bloque y Elementos en Linea](https://www.w3schools.com/html/html_blocks.asp)
-- **Recordatorio: TODAS las etiquetas en linea iran siempre dentro de etiquetas en bloque. [Leccion W3 Schools](https://www.w3schools.com/html/html_formatting.asp)**
-- Practica sugerida
-    - Hacer una receta de su plato favorito usando las etiquetas HTML que vimos en clase
-    - [Ej de receta](https://comedera.com/receta-de-chipa-pan-paraguayo/)
-
-- Repasar Git
-
-- Proxima clase, repasar dudas hasta elementos en bloque y en linea.
-- Continuamos desde HTML tables, listas y contenedores

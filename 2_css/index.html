@@ -13,10 +13,37 @@
     <!-- CSS Interno -->
     <style>
         body {
-            /* font-family: Arial, Helvetica, sans-serif; */
-            font-family: "Montserrat", sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
+            /* font-family: "Montserrat", sans-serif; */
             margin: 0;
         }
+
+        /* Probando pseudoclases */
+        #enlace1:hover {
+            color: green;
+            text-decoration: none;
+        }
+
+        #enlace2:active {
+            border: 2px solid;
+            background-color: green;
+            color: white;
+            padding: 5px;
+            text-decoration: none;
+        }
+
+        #enlace3 {
+            text-decoration: none;
+        }
+
+        #enlace3:visited {
+            color: orange;
+        }
+
+        #enlace4:visited:hover {
+            color: tomato;
+        }
+
     </style>
 
     <!-- CSS Externo -->
@@ -26,26 +53,26 @@
 <body>
 
     <header>
-        <div>
+        <div class="header-img">
             <img src="https://www.gstatic.com/marketing-cms/assets/images/f5/d3/a7f9db7045429cb6dc6be56bdcbe/google-logo-about.svg" alt="Logo Google">
         </div>
 
         <nav>
             <ul>
                 <li class="lista-header">
-                    <a href="https://about.google/intl/es_ALL/">Acerca de</a>
+                    <a id="enlace1" class="link-header" href="https://about.google/intl/es_ALL/">Acerca de</a>
                 </li>
 
                 <li class="lista-header">
-                    <a href="https://about.google/intl/es_ALL/products/">Productos</a>
+                    <a id="enlace2" class="link-header" href="https://about.google/intl/es_ALL/products/">Productos</a>
                 </li>
 
                 <li class="lista-header">
-                    <a href="https://about.google/intl/es_ALL/company-info/">Sobre la empresa</a>
+                    <a id="enlace3" class="link-header" href="https://about.google/intl/es_ALL/company-info/">Sobre la empresa</a>
                 </li>
                 
                 <li class="lista-header">
-                    <a href="https://blog.google/?utm_source=about.google&utm_medium=referral&utm_campaign=navigation">Noticias</a>    
+                    <a target="_blank" id="enlace4" class="link-header" href="https://blog.google/?utm_source=about.google&utm_medium=referral&utm_campaign=navigation">Noticias</a>    
                 </li>
 
             </ul>
