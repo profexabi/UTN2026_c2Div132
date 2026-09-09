@@ -1,0 +1,92 @@
+/* ==================
+    Generales
+================== */
+.boton {
+    padding: 12px 24px;
+    border: 1px transparent;
+    font-size: 16px;
+    border-radius: 48px;
+}
+
+.boton:hover {
+    cursor: pointer;
+    background-color: #174ea6;
+}
+
+.primario {
+    background-color: #1a73e8;
+    color: white;
+    font-weight: 500;
+}
+
+
+
+/* ==================
+    Header
+================== */
+header {
+    display: flex;
+    align-items: center;
+    /* border: 2px solid red; */
+    height: 64px;
+}
+
+header ul {
+    list-style-type: none;
+    padding-left: 0;
+    display: flex;
+    justify-content: space-evenly;
+    /* border: 2px solid blue; */
+}
+
+header nav {
+    /* border: 2px solid purple; */
+    width: 24%;
+}
+
+.header-img {
+    /* border: 2px solid green; */
+    width: 8%;
+    text-align: center;
+}
+
+.header-img img {
+    height: 32px;
+}
+
+
+
+/* ==================
+    Portada
+================== */
+.portada {
+    /* border: 1px solid; */
+    background-color: #f1edea;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 55px;
+}
+
+.portada-info {
+    /* border: 1px solid; */
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.portada h1 {
+    font-size: 60px;
+    font-weight: 400;
+}
+
+.portada video {
+    width: 100%;
+}
+
+.gris {
+    color: #5f6368;
+    font-size: 20px;
+}
+

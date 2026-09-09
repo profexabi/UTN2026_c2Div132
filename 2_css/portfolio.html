@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="style.css">
+        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+        <title>Portfolio Franco Lazo</title>
+
+        <style>
+            /* Agregamos la fuente externa en assets/fonts */
+            @font-face {
+                font-family: "FutureZ";
+                src: url("assets/fonts/future-z-font/FutureZ-MVEaw.ttf");
+            }
+
+            body {
+                margin: 0;
+            }
+
+            .portada-hero {
+                /* border: 2px solid; */
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: "FutureZ";
+                color: white;
+                background-image: url("assets/img/gif\ futurista.gif");
+                background-size: cover;
+            }
+
+            .portada-hero h1 {
+                font-size: 5.5rem;
+            }
+
+            .portada-hero h3 {
+                font-size: 2rem;
+            }
+
+            .hero-texto {
+                background-color: rgba(0, 0, 0, 0.6);
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                justify-content: center;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <!-- La portada hero es la que ocupa toda la pantalla y busca causar un efecto potente -->
+        <section class="portada-hero">
+            <div class="hero-texto">
+                <h1>Portfolio Franco Lazo</h1>
+                <h3>Desarrollador fullstack</h3>
+            </div>
+        </section>
+
+        <header>
+            <div class="titulo">
+                <h1>Franco Lazo</h1>
+                <p>El mejor desarrollador de software de su casa (vive solo) especialista en no se que</p>
+            </div>
+        
+        <!-- Navegacion -->   
+            <nav>
+                <ul>
+                    <li>
+                        <a class="link" href="#presentacion">sobre mi</a>
+                    </li>
+                    <li>
+                        <a class="link" href="#experiencias">experiencia</a>
+                    </li>
+                    <li>
+                        <a class="link" href="#habilidades">habilidades</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+
+            <section id="presentacion">
+                <h2 class="titulo-presentacion">Sobre mi</h2>
+                <p>
+
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente aperiam itaque, perspiciatis consequuntur provident dolore quo facere dolorem rerum incidunt ex at. Consequatur laudantium inventore dolores ipsum, nemo obcaecati perferendis!
+                
+                </p>
+                <button type="button" class="boton boton-primario">Mas sobre mi</button>
+            </section>
+
+            <section id="experiencias">
+                <h2>Experiencia</h2>
+
+                <div class="experiencia">
+                    <h3>Cargo</h3>
+                    <h5>Empresa</h5>
+                    <p>Descripcion</p>
+                    <hr>
+                </div>
+
+                <div class="experiencia">
+                    <h3>Cargo</h3>
+                    <h5>Empresa</h5>
+                    <p>Descripcion</p>
+                    <hr>
+                </div>
+            </section>
+
+            <section id="habilidades">
+                <h2>Habilidades Tecnicas</h2>
+                <ul>
+                    <li>Java</li>
+                    <li>Spring boot</li>
+                    <li>Maven</li>
+                    <li>Docker</li>
+                </ul>
+            </section>
+        </main>
+
+        <footer>
+            <p>Todos los derechos reservados. ©</p>
+        </footer>
+
+    </body>
+
+
+</html>

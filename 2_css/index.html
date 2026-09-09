@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Fuentes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- CSS Interno -->
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            /* font-family: "Montserrat", sans-serif; */
+            margin: 0;
+        }
+
+        /* Probando pseudoclases */
+        #enlace1:hover {
+            color: green;
+            text-decoration: none;
+        }
+
+        #enlace2:active {
+            border: 2px solid;
+            background-color: green;
+            color: white;
+            padding: 5px;
+            text-decoration: none;
+        }
+
+        #enlace3 {
+            text-decoration: none;
+        }
+
+        #enlace3:visited {
+            color: orange;
+        }
+
+        #enlace4:visited:hover {
+            color: tomato;
+        }
+
+    </style>
+
+    <!-- CSS Externo -->
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+
+    <header>
+        <div class="header-img">
+            <img src="https://www.gstatic.com/marketing-cms/assets/images/f5/d3/a7f9db7045429cb6dc6be56bdcbe/google-logo-about.svg" alt="Logo Google">
+        </div>
+
+        <nav>
+            <ul>
+                <li class="lista-header">
+                    <a id="enlace1" class="link-header" href="https://about.google/intl/es_ALL/">Acerca de</a>
+                </li>
+
+                <li class="lista-header">
+                    <a id="enlace2" class="link-header" href="https://about.google/intl/es_ALL/products/">Productos</a>
+                </li>
+
+                <li class="lista-header">
+                    <a id="enlace3" class="link-header" href="https://about.google/intl/es_ALL/company-info/">Sobre la empresa</a>
+                </li>
+                
+                <li class="lista-header">
+                    <a target="_blank" id="enlace4" class="link-header" href="https://blog.google/?utm_source=about.google&utm_medium=referral&utm_campaign=navigation">Noticias</a>    
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="portada">
+            <div class="portada-info">
+                <h1>Todo lo que anunciamos en Made by Google</h1>
+                <p class="gris">Conoce a los nuevos miembros de la familia Pixel.</p>
+    
+                <div>
+                    <button class="boton primario">Comenzar</button>
+                </div>
+            </div>
+            
+            <video src="https://www.gstatic.com/marketing-cms/d9/09/5d785c164c0b8e0f1756ed51a156/about-1250-hardwaredurabilityandsustainability-pt01-v30.mp4" loop muted autoplay></video>
+            
+        </section>
+
+        <section></section>
+        <section></section>
+        <section></section>
+    </main>
+</body>
+</html>
