@@ -1,0 +1,17 @@
+.card {
+    cursor: pointer;
+    transition:
+        transform 0.3s ease-out,
+        box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 20px rgba(0, 0, 0, 0.244) !important;
+}
+
+.card-img-top {
+    aspect-ratio: 2/3;
+    object-fit: cover;
+}
