@@ -1,0 +1,54 @@
+ h1,
+ h2,
+ h4 {
+     color: brown;
+ }
+
+ .principal h1 {
+     color: magenta;
+ }
+
+
+
+ .fondo-azul {
+     background-color: rgb(111, 177, 231);
+ }
+
+ body {
+     background-color: azure;
+     /* background-image: url(/assets/img/richard-horvath-_nWaeTF6qo0-unsplash.jpg); */
+     background-repeat: round;
+ }
+
+ a {
+     color: rgb(43, 122, 226);
+ }
+
+ p {
+     color: aliceblue;
+     background-color: azure;
+     background-image: url(/assets/img/richard-horvath-_nWaeTF6qo0-unsplash.jpg);
+     background-repeat: round;
+ }
+
+
+ .boton {
+     padding: 10px;
+
+     border-radius: 20px;
+
+     border: 1px solid salmon;
+
+     color: white;
+ }
+
+ .boton-rojo {
+     background-color: red;
+     border: 2px solid rgb(210, 69, 30);
+     border: 4px dashed rgb(33, 210, 30);
+ }
+
+
+ .boton-azul {
+     background-color: cornflowerblue;
+ }

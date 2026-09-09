@@ -1,0 +1,103 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgb(255, 251, 244);
+    color: rgb(42, 25, 37);
+    margin: 0;
+}
+
+.titulo {
+    background-color: rgb(247, 158, 117);
+    padding: 40px;
+    text-align: center;
+    color: rgb(246, 247, 248);
+    margin-bottom: 0;
+}
+
+.titulo h1 {
+    color: rgb(62, 53, 53);
+}
+
+
+nav ul {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    list-style: none;
+    margin: 10px auto;
+}
+
+nav {
+    background-color: rgb(255, 255, 255);
+    margin-top: 0;
+    padding: 10px;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.link {
+    text-decoration: none;
+    color: rgb(42, 25, 37);
+    padding: 10px;
+    font-weight: bold;
+}
+
+.link:hover {
+    color: coral;
+    text-decoration: underline;
+    background-color: rgba(246, 174, 147, 0.142);
+}
+
+main {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 0 30px;
+}
+
+section {
+    margin-bottom: 100px;
+}
+
+.titulo-presentacion {
+    color: rgb(161, 47, 5);
+}
+
+.boton {
+    border: 2px solid coral;
+    border-radius: 10px;
+    padding: 10px;
+
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 6px;
+
+    transition: ease-in-out 0.2s;
+}
+
+.boton:hover {
+    transform: translateY(-2px);
+}
+
+.boton-primario {
+    background-color: rgb(243, 144, 98);
+    color: white;
+}
+
+.boton-primario:hover {
+    background-color: coral;
+}
+
+footer {
+    background-color: rgb(247, 158, 117);
+    text-align: center;
+    padding: 30px;
+}
+
+footer p {
+    margin: 0;
+    color: aliceblue;
+}
