@@ -6,6 +6,8 @@
 ## Colores CSS
 - [140 nombres de colores](https://www.w3schools.com/colors/colors_names.asp)
 
+- [Gradientes css online](https://cssgradient.io/)
+- [Muestras CSS Box Shadow](https://getcssscan.com/css-box-shadow-examples)
 
 ---
 

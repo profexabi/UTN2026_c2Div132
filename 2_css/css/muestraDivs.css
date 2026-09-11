@@ -1,0 +1,152 @@
+/* ====================
+    Variables CSS
+==================== */
+:root {
+    --rojo-primario: #ec0000;
+    --gris-fondo: #b7bec4;
+    --blanco-primario: #ffffff;
+    --negro-primario: #000000;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+    text-align: center;
+    margin-top: 80px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 16px;
+}
+
+#header-izq {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 8%;
+}
+
+
+#header-cent img {
+    width: 180px;
+}
+
+#header-der {
+    /* width: 14%; */
+    width: 290px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+#header-der button {
+    font-size: 13px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+.btn-primario {
+    background-color: var(--blanco-primario);
+    color: var(--rojo-primario); 
+    border: 1px solid var(--rojo-primario);
+}
+
+.btn-secundario {
+    border: 1px transparent;
+    background-color: var(--rojo-primario);
+    color: var(--blanco-primario);
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 450px;
+    justify-content: space-around;
+}
+
+.cards-container_sup, .cards-container_inf {
+    display: flex;
+    /* width: 50%; */
+    width: 1000px;
+    justify-content: space-around;
+}
+
+.card {
+    border-radius: 20px;
+    width: 280px;
+    height: 185px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.card img {
+    width: 50px;
+}
+
+.primario {
+    background-color: var(--blanco-primario);
+    color: var(--negro-primario);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 4px 0px;
+}
+
+.secundario {
+    background-color: var(--rojo-primario);
+    color: var(--blanco-primario);
+}
+
+
+
+/* ====================
+    Media Queries
+==================== */
+@media (max-width: 1000px) {
+    .cards-container {
+        width: 100%;
+    }
+
+    .btn-primario {
+        display: none;
+    }
+
+    #header-der {
+        width: 140px;
+    }
+
+    .cards-container_sup, .cards-container_inf {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 50%;
+    }
+}
+
+@media (max-width: 580px) {
+    .cards-container_sup, .cards-container_inf {
+        width: 100%;
+    }
+
+    .card {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    #header-der {
+        display: none;
+    }
+
+    #header-cent {
+        margin-right: 3%;
+    }
+}

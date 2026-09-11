@@ -2,8 +2,9 @@
 ---
 
 # Cronograma clases
-- Prox clase CSS II -> Combinadores y continuar desde CSS display
-- Mucho peso a live coding para seguir maquetando
+- Prox clase: JavaScript I y II
+- **Mucho peso a live coding para seguir maquetando**
+    - Poner en practica todo lo aprendido en CSS
 
 ## Clase CSS I
 - pseudoclases
