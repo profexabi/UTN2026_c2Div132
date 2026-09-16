@@ -1,16 +1,12 @@
 # Progra III Div132 2026 c2
+
 ---
 
 # Cronograma clases
-- Prox clase: JavaScript I y II
+- Prox clase: JavaScript III
 - **Mucho peso a live coding para seguir maquetando**
     - Poner en practica todo lo aprendido en CSS
-
-## Clase CSS I
-- pseudoclases
-- flex
-- uds absolutas y relativas
-- estilado basico
+---
 
 ## Clase 1
 - HTML hasta [Elementos en Bloque y Elementos en Linea](https://www.w3schools.com/html/html_blocks.asp)
