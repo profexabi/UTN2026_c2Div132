@@ -3,9 +3,9 @@
 ---
 
 # Cronograma clases
-- Prox clase: JavaScript III
-- **Mucho peso a live coding para seguir maquetando**
-    - Poner en practica todo lo aprendido en CSS
+- Prox clase: JavaScript IV y V
+
+
 ---
 
 ## Clase 1

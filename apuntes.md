@@ -1,3 +1,67 @@
+# Atajos VSCode / VSCodium
+## [Atajos de VSCode para Linux](https://docs.google.com/viewer?url=https%3A%2F%2Fraw.githubusercontent.com%2FLautaroSantiago%2FProgramacion_III%2Fmaster%2FMaterial%2Fkeyboard-shortcuts-linux.pdf&authuser=2)
+## 40 atajos comunes de VS Code
+
+ > Para **Windows/Linux**. En macOS, normalmente `Ctrl` → `Cmd` y `Alt` → `Option`.
+
+ | # | Atajo | Acción |
+| --- | --- | --- |
+| 1 | `Ctrl + P` | Buscar y abrir archivos |
+| 2 | `Ctrl + Shift + P` | Abrir la paleta de comandos |
+| 3 | `Ctrl + S` | Guardar archivo |
+| 4 | `Ctrl + W` | Cerrar pestaña |
+| 5 | `Ctrl + Shift + T` | Reabrir pestaña cerrada |
+| 6 | `Ctrl + Tab` | Cambiar entre pestañas |
+| 7 | `Ctrl + F` | Buscar en el archivo |
+| 8 | `Ctrl + H` | Buscar y reemplazar |
+| 9 | `Ctrl + G` | Ir a una línea |
+| 10 | `Ctrl + /` | Comentar/descomentar línea |
+| 11 | `Shift + Alt + F` | Formatear documento |
+| 12 | `Ctrl + D` | Seleccionar siguiente coincidencia |
+| 13 | `Ctrl + Shift + L` | Seleccionar todas las coincidencias |
+| 14 | `Ctrl + L` | Seleccionar línea |
+| 15 | `Shift + Alt + ↓` | Duplicar línea hacia abajo |
+| 16 | `Shift + Alt + ↑` | Duplicar línea hacia arriba |
+| 17 | `Alt + ↑` | Mover línea hacia arriba |
+| 18 | `Alt + ↓` | Mover línea hacia abajo |
+| 19 | `Shift + Alt + ↓` | Copiar línea hacia abajo |
+| 20 | `Shift + Alt + ↑` | Copiar línea hacia arriba |
+| 21 | `Ctrl + Shift + K` | Eliminar línea |
+| 22 | `Ctrl + Enter` | Insertar línea debajo |
+| 23 | `Ctrl + Shift + Enter` | Insertar línea encima |
+| 24 | `Home` | Ir al inicio de la línea |
+| 25 | `End` | Ir al final de la línea |
+| 26 | `Ctrl + Home` | Ir al inicio del archivo |
+| 27 | `Ctrl + End` | Ir al final del archivo |
+| 28 | `Ctrl + ← / →` | Saltar entre palabras |
+| 29 | `Shift + Alt + →` | Expandir selección |
+| 30 | `Shift + Alt + ←` | Reducir selección |
+| 31 | `Ctrl + Z` | Deshacer |
+| 32 | `Ctrl + Y` | Rehacer |
+| 33 | `Ctrl + X` | Cortar |
+| 34 | `Ctrl + C` | Copiar |
+| 35 | `Ctrl + V` | Pegar |
+| 36 | `Ctrl + B` | Mostrar/ocultar barra lateral |
+| 37 | ``Ctrl + ` `` | Abrir/cerrar terminal |
+| 38 | `Ctrl + Shift + E` | Mostrar explorador de archivos |
+| 39 | `Ctrl + Shift + F` | Buscar en todo el proyecto |
+| 40 | `Ctrl + Shift + G` | Abrir control de código fuente (Git) |
+
+### ⭐ Los 10 que conviene memorizar primero
+
+ 1. `Ctrl + P` — abrir archivos rápidamente.
+2. `Ctrl + Shift + P` — buscar cualquier comando.
+3. `Ctrl + /` — comentar código.
+4. `Ctrl + D` — seleccionar coincidencias.
+5. `Alt + ↑ / ↓` — mover líneas.
+6. `Shift + Alt + ↓` — duplicar líneas.
+7. `Ctrl + Shift + K` — eliminar línea.
+8. `Shift + Alt + F` — formatear código.
+9. `Ctrl + Shift + F` — buscar en todo el proyecto.
+10. ``Ctrl + ` `` — abrir la terminal.
+
+---
+
 # Diferencia entre `shell`, `bash` y `zsh`
 La diferencia clave es que **“shell” es el concepto general**, mientras que **Bash y Zsh son shells concretos**.
 
