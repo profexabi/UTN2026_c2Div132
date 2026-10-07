@@ -21,7 +21,46 @@ Recién después ejecuta el código en orden.
 ## JavaScript VI
 - [Ejercicios de manipulacion del DOM](https://drive.google.com/file/d/1JGimlE_LlHeoIGgAZgC1njTZV62vyViB/view)
 
+### Que es el [DOM](https://www.w3schools.com/whatis/whatis_htmldom.asp)?
+El DOM o Modelo de Objetos del Documento (Document Object Model) es una interfaz de programacion que representa un documento HTML como una estructura jerarquica de objetos, conocida como arbol DOM o DOM tree.
 
+Esta estructura permite a los programas acceder, modificar, añadir o eliminar elementos, contenido, estilos y atributos del documento de forma dinamica. Cada elemento HTML se convierte en un nodo dentro de ese arbol y todos los elementos estan relacionados entre si mediante padres, hijos y hermanos, creando una representacion en memoria del documento que el navegador puede manipular.
+
+**En resumen, el DOM es la base que permite a JavaScript interactuar con el contenido de una pagina web, transformando el codigo HTML en una estructura de objetos manipulable.**
+
+Ejemplo de estructura DOM
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mi página</title>
+    </head>
+    <body>
+        <h1>Bienvenidos</h1>
+        <p>Este es un párrafo</p>
+    </body>
+</html>
+```
+
+Este HTML termina representado en el DOM como una estructura en forma de arbol. Donde `document` es el objeto que representa toda la pagina web.
+
+- document
+    - html
+        - head
+            - title
+        - body
+            - h1
+            - p
+
+Como funciona la manipulacion del DOM?
+- JavaScript puede acceder y modificar cualquier elemento del DOM utilizando el objeto global `document`, con el podremos
+- Modificar el contenido de texto, atributos, clases, etc
+- Añadir o eliminar elementos del DOM
+- Escuchar eventos de usuario (clicks, teclas pulsadas, etc)
+
+```js
+
+```
 
 ---
 

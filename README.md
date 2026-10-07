@@ -2,8 +2,16 @@
 
 ---
 
+## Fechas importantes
+- **1er parcial hasta JavaScript VI (Manipulacion del DOM)**
+- 1er Parcial sincronico: 16 - 08:30
+- Recuperatorio 1er parcial: 23 - 08:30 en tiempo de clase
+
+## Recursos
+- [Se termino lo de la IA reemplazando devs](https://www.youtube.com/watch?v=KQgATAU6ztU)
+
 # Cronograma clases
-- Prox clase: JavaScript IV y V
+- Prox clase: JavaScript VII
 
 
 ---

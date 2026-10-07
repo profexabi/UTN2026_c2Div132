@@ -13,7 +13,33 @@
 </head>
 <body>
     <main>
-        <h1>132 JavaScript</h1>
+        <h1 id="titulo">132 JavaScript</h1>
+
+        <p class="mensaje">Primer parrafo</p>
+        <p class="mensaje" id="ultimo-parrafo">Segundo parrafo</p>
+
+        <button id="boton">Hace click capo</button>
+
+        <form class="borde">
+            <input type="text" name="texto" id="texto">
+        </form>
+
+        <!-- Propagacion de eventos -->
+        <div id="padre" class="borde">
+            <button id="hijo">Boton</button>
+        </div>
+
+        <!-- Formulario HTML estandar con envio por defecto -->
+        <form id="miFormulario" class="borde">
+            <label for="fname">First name:</label><br>
+            <input type="text" id="fname" name="fname"><br>
+            
+            <label for="lname">Last name:</label><br>
+            <input type="text" id="lname" name="lname"><br><br>
+            
+            <input type="submit" value="Submit">
+        </form> 
+        
     </main>
     
     <!-- Lugar historico del <script>
