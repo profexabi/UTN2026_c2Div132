@@ -7,12 +7,33 @@
 - 1er Parcial sincronico: 16 - 08:30
 - Recuperatorio 1er parcial: 23 - 08:30 en tiempo de clase
 
+### Que practicar?
+- Ejercicios de JS IV, V y VI
+- Maquetacion con CSS y estilos basicos
+- Recorrer arrays de objetos y renderizarlos
+- Practicar con eventos!
+
+---
+
 ## Recursos
 - [Se termino lo de la IA reemplazando devs](https://www.youtube.com/watch?v=KQgATAU6ztU)
 
 # Cronograma clases
 - Prox clase: JavaScript VII
 
+## Pendientes
+- Diferencia rest operator y spread operator
+- Closures
+- JavaScript como lenguaje monohilo
+- Event Loop
+- Comprender mas en profundidad el lenguaje y el entorno de ejecucion
+
+
+---
+
+## Videos
+- [amigoscode / se termino lo de la ia reemplazando desarrolladores](https://www.youtube.com/watch?v=KQgATAU6ztU)
+- [Fuck it, make it anyway](https://www.joelotter.com/posts/2026/09/make-it-anyway/)
 
 ---
 
