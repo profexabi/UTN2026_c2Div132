@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard principal</title>
+
+    <!-- Preset de CSS Bed -->
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.classless.min.css" type="text/css">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <section id="logo">
+            <div class="logo-container">
+                <img src="img/burger-logo.png" class="logo" alt="Los pollos hermanos">
+            </div>
+
+            <h2 class="logo-titulo">Las vacas hermanas</h2>
+        </section>
+
+        <nav>
+            <ul class="lista-nav">
+                <li>
+                    <a href="index.html">
+                        Principal
+                    </a>
+                </li>
+                <li>
+                    <a href="get.html">
+                        Obtener
+                    </a>
+                </li>
+                <li>
+                    <a href="post.html">
+                        Crear
+                    </a>
+                </li>
+                <li>
+                    <a href="put.html">
+                        Modificar
+                    </a>
+                </li>
+                <li>
+                    <a href="delete.html">
+                        Eliminar
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Contenedor de los productos que vengan de /api/products -->
+        <section id="contenedor-productos"></section>
+    </main>
+
+    <footer></footer>
+
+    <!-- TO DO, migrar este JS al archivo correspondiente index.js -->
+    <script>
+        const contenedorProductos = document.getElementById("contenedor-productos");
+
+        async function obtenerProductos() {
+            const urlBase = "http://localhost:3000";
+
+            // Peticion GET a http://localhost:3000/api/products
+            const response = await fetch(`${urlBase}/api/products`);
+            console.log(response); // Debemos otorgar permiso explicito desde la API REST
+            // Access to fetch at 'http://localhost:3000/api/products' from origin 'null' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+            const data = await response.json();
+            const productos = data.payload;
+            //console.table(productos);
+
+            renderizarProductos(productos);
+        }
+
+
+        function renderizarProductos(array) {
+            let htmlProductos = "";
+            console.log(array);
+
+            array.forEach(prod => {
+                htmlProductos += `
+                <div class="card-producto">
+                    <img class="card-img" src="${prod.image}" alt="${prod.name}">
+                    <h4>${prod.name}</h4>
+                    <p>Id: ${prod.id}</p>
+                    <p>$ ${prod.price}</p>
+                </div>
+                `;
+            });
+            // Renderizamos en la pagina nuestros div de productos
+            contenedorProductos.innerHTML = htmlProductos;
+        }
+
+        obtenerProductos();
+    </script>
+</body>
+</html>
