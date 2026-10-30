@@ -30,5 +30,4 @@ Un pool de conexiones es un conjunto de conexiones activas y reutilizables a la 
     - Evita crear y destruir conexiones constantemente
     - Reduce la carga en la BBDD
     - Mejora la velocidad y capacidad de respuesta de la app
-
 */

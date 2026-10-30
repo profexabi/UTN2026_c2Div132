@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
 
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
     <header>
         <section id="logo">
@@ -52,9 +54,67 @@
     </header>
 
     <main>
-        <section class="contenedor-productos"></section>
+        <section class="getIdProduct-container">
+
+            <!-- Formulario GET product by id -->
+            <form id="getIdProductForm">
+
+                <label for="idProd">Id del producto</label>
+                <input type="number" name="idProd" id="idProd" required>
+
+                <input type="submit" value="Consultar producto">
+            </form>
+
+        </section>
+
+        <section id="contenedor-productos"></section>
     </main>
 
-    <footer></footer>
+    <script>
+        const contenedorProductos = document.getElementById("contenedor-productos");
+        const getIdProductForm = document.getElementById("getIdProductForm");
+        const urlBase = "http://localhost:3000";
+
+        getIdProductForm.addEventListener("submit", async event => {
+
+            // Evitamos el envio por defecto del <form>
+            event.preventDefault();
+
+            // Extraemos el valor del campo id 
+            const idProd = event.target.idProd.value.trim();
+            // console.log(idProd);
+
+            try {
+                const response = await fetch(`${urlBase}/api/products/${idProd}`);
+                console.log(response);
+
+                const data = await response.json();
+                const producto = data.payload[0];
+
+                renderizarProducto(producto);
+
+            } catch (error) {
+                console.error("Error al obtener producto: ", error.message);
+            }
+        });
+
+
+        function renderizarProducto(producto) {
+            console.table(producto);
+
+            let htmlProducto = `
+                <ul class="lista-container">
+                    <li class="lista-producto">
+                        <img src="${producto.image}" alt="${producto.name}" class="lista-producto_img">
+                        <p>Id: ${producto.id} / Nombre: ${producto.name} / <strong>Precio: $${producto.price}</strong></p>
+                    </li>
+                </ul>
+            `;
+
+            contenedorProductos.innerHTML = htmlProducto
+        }
+
+    </script>
 </body>
+
 </html>

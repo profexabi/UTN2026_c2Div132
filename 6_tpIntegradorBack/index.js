@@ -24,7 +24,8 @@ app.use((req, res, next) => {
 	next(); // Pasamos al siguiente middleware o a la respuesta
 });
 
-
+// Parseamos el JSON que enviamos en los formularios para recibirlos como objemos
+app.use(express.json()); // Parseamos el JSON recibido en el body automaticamente
 
 
 /*=====================
@@ -35,7 +36,7 @@ app.get("/", (req, res) => {
 });
 
 
-// GET all products
+// GET all products -> Obtener todos los productos
 app.get("/api/products", async (req, res) => {
 	const [rows, tables] = await connection.query("SELECT * FROM products");
 	// console.log(rows);
@@ -46,14 +47,16 @@ app.get("/api/products", async (req, res) => {
 });
 
 
-// GET product by id
+// GET product by id -> Obtener producto por id
 app.get("/api/products/:id", async (req, res) => {
 
 	const id = req.params.id;
 	// req.body -> de aca recibiremos la info de los <form>
 	// console.log(id);
 
-	const [rows] = await connection.query(`SELECT * FROM products WHERE products.id = ${id}`);
+	// Gracias a los ? (placeholders) nuestra consulta SQL es mas segura porque evitamos consultas vulnerables
+	const sql = "SELECT * FROM products WHERE products.id = ?";
+	const [rows] = await connection.query(sql, [id]);
 
 	// console.log(rows);
 	res.status(200).json({
@@ -61,8 +64,30 @@ app.get("/api/products/:id", async (req, res) => {
 	});
 });
 
+// POST product -> Crear producto
+app.post("/api/products", async (req, res) => {
+	
+	// Extraemos los datos del form dentro del cuerpo de la peticion 
+	console.log(req.body);
+	/*
+	{
+		category: 'drink',
+		image: 'https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2Fw6a3b0hlkifc1.jpeg',
+		name: 'Manaos uva',
+		price: '1500'
+	}
+	*/
+	
+	const { category, image, name, price } = req.body;
 
-// app.post("/api/products")
+	const sql = "INSERT INTO products (name, image, category, price) VALUES (?, ?, ?, ?)"
+
+	await connection.query(sql, [name, image, category, price]);
+
+	res.status(201).json({
+		message: "Producto creado con exito"
+	});
+})
 
 // app.put("/api/products/:id")
 

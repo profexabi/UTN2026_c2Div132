@@ -52,9 +52,101 @@
     </header>
 
     <main>
-        <section class="contenedor-productos"></section>
+
+        <!-- Formulario POST product -->
+        <section class="createProduct-container">
+
+            <h2>Crear nuevo producto</h2>
+
+            <!-- Formulario GET product by id -->
+            <form id="createProductForm">
+
+                <label for="categoryProd">Categoria</label>
+                <select name="category" id="categoryProd" required>
+                    <option value="food">Comida</option>
+                    <option value="drink">Bebida</option>
+                </select>
+
+                <label for="imageProd">Imagen</label>
+                <input type="text" name="image" id="imageProd" required>
+
+                <label for="nameProd">Nombre</label>
+                <input type="text" name="name" id="nameProd" required>
+
+                <label for="priceProd">Precio</label>
+                <input type="number" name="price" id="priceProd" required>
+
+                <input type="submit" value="Crear producto">
+
+            </form>
+
+        </section>
+
+        <section id="contenedor-productos"></section>
     </main>
 
-    <footer></footer>
+    <script>
+        const contenedorProductos = document.getElementById("contenedor-productos");
+        const createProductForm = document.getElementById("createProductForm");
+        const urlBase = "http://localhost:3000";
+
+        createProductForm.addEventListener("submit", async event => {
+            
+            // Evitamos el envio por defecto del formulario porque queremos enviarlo con JS
+            event.preventDefault();
+
+            /* Vamos a hacer algo distinto a la extraccion simple del valor idProd
+            // Extraemos el valor del campo id 
+            const idProd = event.target.idProd.value.trim();*/
+
+            const formData = new FormData(event.target);
+            console.log(formData); // FormData(4) { category → "food", image → "url...", name → "faina", price → "123" }
+
+            // Convertimos este objeto FormData en un objeto literal JavaScript
+            const formObj = Object.fromEntries(formData.entries());
+            console.log(formObj); 
+            /* Luego convertiremos este objeto en JSON para enviarlo, usando JSON.stringify()
+            {
+                category: 'food', 
+                image: 'https://img-global.cpcdn.com/steps/2b7d7bbac9fa98f…80/foto-del-paso-8-de-la-receta-tarta-de-atun.jpg', 
+                name: 'fernet buhero negro', 
+                price: '123'
+            }*/ 
+
+            console.log(JSON.stringify(formObj));
+
+
+            try {
+                const response = await fetch(`${urlBase}/api/products`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(formObj)
+                });
+
+                console.log(response);
+
+                /* Que recibiremos?
+                
+                Sabemos que el endpoint nos respondera con un 201 Created
+                Tambien con el objeto message: "Producto creado con exito"
+
+                res.status(201).json({
+                    message: "Producto creado con exito"
+                });
+
+                Como accedemos a este mensaje? Tenemos que parsear este JSON que esta dentro del cuerpo de la respuesta, es la instruccion que hacemos abajo: */
+                const data = await response.json();
+
+                console.log(data.message); //"Producto creado con exito"
+                alert(data.message); // "Producto creado con exito"
+
+            } catch (error) {
+                console.error("Error al enviar los datos: ", error);
+            }
+        });
+
+    </script>
 </body>
 </html>

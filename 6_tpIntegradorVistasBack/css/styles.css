@@ -15,6 +15,11 @@ header {
     justify-content: space-between;
 }
 
+ul {
+    padding-left: 0;
+    list-style: none;
+}
+
 #logo {
     width: 25%;
     justify-content: space-around;
@@ -78,4 +83,33 @@ header nav {
 #contenedor-productos {
     display: flex;
     flex-wrap: wrap;
+}
+
+
+
+/*=================
+    Lista producto
+=================*/
+.getIdProduct-container {
+    width: 40%;
+}
+
+.lista-container {
+    width: 95%;
+}
+
+.lista-producto_img {
+    width: 100px;
+    border-radius: 0.25rem;
+}
+
+.lista-producto {
+    display: flex;
+    align-items: center;
+    /*
+    border-radius: 0.25rem;
+    border: 2px solid var(--primary-purple);
+    */
+    padding-bottom: 0;
+    justify-content: space-between;
 }
