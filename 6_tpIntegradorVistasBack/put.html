@@ -69,21 +69,21 @@
 
         <section id="contenedor-productos"></section>
     </main>
-
+    
     <script>
         const contenedorProductos = document.getElementById("contenedor-productos");
         const getIdProductForm = document.getElementById("getIdProductForm");
         const urlBase = "http://localhost:3000";
-
+        
         getIdProductForm.addEventListener("submit", async event => {
 
             // Evitamos el envio por defecto del <form>
             event.preventDefault();
-
+            
             // Extraemos el valor del campo id 
             const idProd = event.target.idProd.value.trim();
             // console.log(idProd);
-
+            
             try {
                 const response = await fetch(`${urlBase}/api/products/${idProd}`);
                 console.log(response);
@@ -92,27 +92,122 @@
                 const producto = data.payload[0];
 
                 renderizarProducto(producto);
-
+                
             } catch (error) {
                 console.error("Error al obtener producto: ", error.message);
             }
         });
-
-
+        
+        
         function renderizarProducto(producto) {
-            console.table(producto);
 
             let htmlProducto = `
-                <ul class="lista-container">
-                    <li class="lista-producto">
-                        <img src="${producto.image}" alt="${producto.name}" class="lista-producto_img">
-                        <p>Id: ${producto.id} / Nombre: ${producto.name} / <strong>Precio: $${producto.price}</strong></p>
-                        <p><button>Actualizar producto</button></p>
-                    </li>
-                </ul>
+            <ul class="lista-container">
+                <li class="lista-producto">
+                    <img src="${producto.image}" alt="${producto.name}" class="lista-producto_img">
+                    <p>Id: ${producto.id} / Nombre: ${producto.name} / <strong>Precio: $${producto.price}</strong></p>
+                    <p><button id="updateProduct-button">Actualizar producto</button></p>
+                </li>
+            </ul>
+            `;
+                    
+                    contenedorProductos.innerHTML = htmlProducto;
+                    
+                    const updateProductButton = document.getElementById("updateProduct-button");
+                    
+                    updateProductButton.addEventListener("click", () => {
+                
+                const confirmacion = confirm("Queres actualizar este producto?");
+
+                if (!confirmacion) {
+                    alert("Actualizacion cancelada");
+                } else {
+                    mostrarFormProducto(producto);
+                }
+            });
+        }
+
+
+        function mostrarFormProducto(producto) {
+            console.table(producto);
+            
+            let htmlFormProducto = `
+            <!-- Formulario PUT product -->
+            <section class="updateProduct-container">
+                
+                <h2>Actualizar producto</h2>
+                
+                <form id="updateProductForm">
+                    
+                    <input type="hidden" name="id" value="${producto.id}">
+                    
+                    <label for="categoryProd">Categoria</label>
+                    <select name="category" id="categoryProd" required>
+                        <option value="food">Comida</option>
+                        <option value="drink">Bebida</option>
+                    </select>
+
+                    <label for="imageProd">Imagen</label>
+                    <input type="text" name="image" id="imageProd" value="${producto.image}" required>
+
+                    <label for="nameProd">Nombre</label>
+                    <input type="text" name="name" id="nameProd" value="${producto.name}" required>
+
+                    <label for="priceProd">Precio</label>
+                    <input type="number" name="price" id="priceProd" value="${producto.price}" required>
+
+                    <input type="submit" value="Actualizar producto">
+
+                </form>
+
+            </section>
             `;
 
-            contenedorProductos.innerHTML = htmlProducto
+            contenedorProductos.innerHTML = htmlFormProducto;
+
+            const updateProductForm = document.getElementById("updateProductForm");
+
+            updateProductForm.addEventListener("submit", event => {
+                actualizarProducto(event);
+            });
+        }
+
+
+        async function actualizarProducto(event) {
+            
+            // Evitado envio por defecto del formulario
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+
+            const formObj = Object.fromEntries(formData.entries());
+
+            try {
+
+                const response = await fetch(`${urlBase}/api/products`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(formObj)
+                });
+
+                console.log(response);
+
+                const result = await response.json();
+
+                console.log(result.message);
+                alert(result.message);
+
+                // Limpiamos la pantalla despues de la actualizacion
+                contenedorProductos.innerHTML = "";
+
+
+            } catch (error) {
+                console.error("Error en la actualizacion del producto: ", error);
+            }
+            
+
         }
 
     </script>

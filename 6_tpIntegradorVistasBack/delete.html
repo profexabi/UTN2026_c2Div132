@@ -107,12 +107,55 @@
                     <li class="lista-producto">
                         <img src="${producto.image}" alt="${producto.name}" class="lista-producto_img">
                         <p>Id: ${producto.id} / Nombre: ${producto.name} / <strong>Precio: $${producto.price}</strong></p>
-                        <p><button>Eliminar producto</button></p>
+                        <p><button id="deleteProduct-button">Eliminar producto</button></p>
                     </li>
                 </ul>
             `;
 
-            contenedorProductos.innerHTML = htmlProducto
+            contenedorProductos.innerHTML = htmlProducto;
+
+            const deleteProductButton = document.getElementById("deleteProduct-button");
+
+            deleteProductButton.addEventListener("click", event => {
+
+                // Evitamos la propagacion de eventos con respecto al evento de preventDefault
+                // event.stopPropagation(); 
+
+                const confirmacion = confirm("Queres eliminar este producto?");
+
+                if(!confirmacion) {
+                    alert("Eliminacion cancelada")
+                } else {
+                    eliminarProducto(producto.id);
+                }
+            });
+        }
+
+        async function eliminarProducto(id) {
+            console.log(id); // El id llega correctamente a la funcion
+
+            try {
+                const response = await fetch(`${urlBase}/api/products/${id}`, {
+                    method: "DELETE"
+                });
+
+                console.log(response);
+
+                const result = await response.json();
+                console.log(result);
+
+                console.log(result.message);
+                alert(result.message);
+
+                // Limpiamos la pantalla (borramos el listado del producto que recien eliminamos)
+                contenedorProductos.innerHTML = "";
+
+
+
+            } catch (error) {
+                console.error("Error en la solicitud DELETE: ", error);
+                alert("Ocurrio un error al eliminar un producto")
+            }
         }
 
     </script>

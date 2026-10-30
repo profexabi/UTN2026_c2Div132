@@ -58,7 +58,6 @@
 
             <h2>Crear nuevo producto</h2>
 
-            <!-- Formulario GET product by id -->
             <form id="createProductForm">
 
                 <label for="categoryProd">Categoria</label>
@@ -126,8 +125,24 @@
                 });
 
                 console.log(response);
-
                 /* Que recibiremos?
+
+                Response {
+                    type: 'cors', 
+                    url: 'http://localhost:3000/api/products', redirected: false, 
+                    status: 201, 
+                    ok: true
+                    body: (...)
+                    bodyUsed: 
+                    true
+                    headers: Headers {}
+                    ok: true
+                    redirected: false
+                    status: 201
+                    statusText: "Created"
+                    type: "cors"
+                    url: "http://localhost:3000/api/products"
+                }
                 
                 Sabemos que el endpoint nos respondera con un 201 Created
                 Tambien con el objeto message: "Producto creado con exito"

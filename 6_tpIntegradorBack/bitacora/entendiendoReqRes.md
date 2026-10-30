@@ -1,3 +1,91 @@
+# Que puede enviar el `<form>` HTML por defecto?
+El formulario HTML nativo (`<form>`) permite realizar peticiones HTTP mediante el atributo `method`.
+
+Tiene soporte nativo para dos métodos HTTP:
+
+- GET: envía los datos del formulario como parámetros en la URL (query string).
+- POST: envía los datos en el cuerpo (body) de la petición HTTP.
+
+### Ejemplo
+
+GET
+
+HTMLAjustar líneasCopiar códigoVista previa
+
+```
+<form action="/usuarios" method="GET">
+  <input name="nombre" />
+  <button type="submit">Enviar</button>
+</form>
+```
+
+Genera una petición similar a:
+
+http
+
+```
+GET /usuarios?nombre=Juan HTTP/1.1
+```
+
+POST
+
+HTMLAjustar líneasCopiar códigoVista previa
+
+```
+<form action="/usuarios" method="POST">
+  <input name="nombre" />
+  <button type="submit">Enviar</button>
+</form>
+```
+
+Genera una petición similar a:
+
+http
+
+```
+POST /usuarios HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+nombre=Juan
+```
+
+### ¿Y PUT, PATCH o DELETE?
+
+El formulario HTML nativo no permite configurar directamente esos métodos mediante `method`.
+
+| Método | Soporte nativo |
+| --- | --- |
+| GET | Sí |
+| POST | Sí |
+| PUT | No |
+| PATCH | No |
+| DELETE | No |
+| OPTIONS | No |
+
+### ¿Cómo utilizar PUT, PATCH o DELETE?
+
+Necesitás JavaScript mediante `fetch()`:
+
+javascript
+
+```
+fetch("/usuarios/123", {
+  method: "PATCH",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    nombre: "Juan"
+  })
+});
+```
+
+Dato adicional: algunos frameworks permiten simular `PUT`, `PATCH` y `DELETE` mediante `POST` y un parámetro especial, como `_method=DELETE`. Esto se conoce como HTTP method override.
+
+
+---
+
+
 # 1 / Comprendiendo el objeto `req` en los endpoints
 En Express.js, el objeto `req` (request) representa la solicitud HTTP que el cliente le envía al servidor. Contiene toda la información que llega desde el cliente, por ejemplo, desde un navegador o desde Postman.
 

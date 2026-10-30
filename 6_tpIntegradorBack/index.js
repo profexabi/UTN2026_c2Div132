@@ -36,6 +36,8 @@ app.get("/", (req, res) => {
 });
 
 
+
+///////////////////
 // GET all products -> Obtener todos los productos
 app.get("/api/products", async (req, res) => {
 	const [rows, tables] = await connection.query("SELECT * FROM products");
@@ -47,6 +49,8 @@ app.get("/api/products", async (req, res) => {
 });
 
 
+
+///////////////////
 // GET product by id -> Obtener producto por id
 app.get("/api/products/:id", async (req, res) => {
 
@@ -64,6 +68,9 @@ app.get("/api/products/:id", async (req, res) => {
 	});
 });
 
+
+
+///////////////////
 // POST product -> Crear producto
 app.post("/api/products", async (req, res) => {
 	
@@ -77,7 +84,7 @@ app.post("/api/products", async (req, res) => {
 		price: '1500'
 	}
 	*/
-	
+
 	const { category, image, name, price } = req.body;
 
 	const sql = "INSERT INTO products (name, image, category, price) VALUES (?, ?, ?, ?)"
@@ -89,9 +96,38 @@ app.post("/api/products", async (req, res) => {
 	});
 })
 
-// app.put("/api/products/:id")
 
-// app.delete("/api/products/:id")
+
+///////////////////
+// PUT product -> Modificar producto
+app.put("/api/products", async (req, res) => {
+	
+	const { id, name, image, price, category } = req.body;
+
+	const sql = "UPDATE products SET name = ?, image = ?, price = ?, category = ? WHERE id = ?";
+
+	await connection.query(sql, [name, image, price, category, id]);
+
+	res.status(200).json({
+		message: `Producto con id ${id} actualizado correctamente`
+	});
+})
+
+
+
+///////////////////
+// DELETE product -> Eliminar producto
+app.delete("/api/products/:id", async (req, res) => {
+
+	const id = req.params.id;
+
+	const sql = "DELETE FROM products WHERE id = ?";
+	await connection.query(sql, [id]);
+
+	res.status(200).json({
+		message: `Producto con id ${id} eliminado correctamente`
+	});
+});
 
 
 /* Vistas EJS -> en src/views/index.ejs
