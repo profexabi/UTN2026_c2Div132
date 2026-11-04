@@ -63,18 +63,33 @@
         const contenedorProductos = document.getElementById("contenedor-productos");
 
         async function obtenerProductos() {
-            const urlBase = "http://localhost:3000";
 
-            // Peticion GET a http://localhost:3000/api/products
-            const response = await fetch(`${urlBase}/api/products`);
-            console.log(response); // Debemos otorgar permiso explicito desde la API REST
-            // Access to fetch at 'http://localhost:3000/api/products' from origin 'null' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+            // Optimizacion 1: Manejamos errores con try...catch
+            try {
+                const urlBase = "http://localhost:3000";
+    
+                // Peticion GET a http://localhost:3000/api/products
+                const response = await fetch(`${urlBase}/api/products`);
+                console.log(response); // Debemos otorgar permiso explicito desde la API REST
+                // Access to fetch at 'http://localhost:3000/api/products' from origin 'null' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+    
+                const data = await response.json();
+    
+                // Optimizacion 2: Filtramos codigos no 200: OK
+                if (!response.ok) {
+                    // el message podra ser el del 404 o el del 500
+                    return mostrarError(data.message);
+                }
+    
+                const productos = data.payload;
+                //console.table(productos);
+    
+                renderizarProductos(productos);
 
-            const data = await response.json();
-            const productos = data.payload;
-            //console.table(productos);
-
-            renderizarProductos(productos);
+            } catch (error) {
+                console.error(error);
+                mostrarError("Error de conexion con el servidor")
+            }
         }
 
 
@@ -94,6 +109,13 @@
             });
             // Renderizamos en la pagina nuestros div de productos
             contenedorProductos.innerHTML = htmlProductos;
+        }
+
+        // Optimizacion 3: mostramos visualmente el error para que sea mas claro e intuitivo
+        function mostrarError(string) {
+            contenedorProductos.innerHTML = `
+                <p class="mensaje error">${string}</p>
+            `;
         }
 
         obtenerProductos();

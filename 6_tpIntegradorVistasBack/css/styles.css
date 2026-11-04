@@ -1,11 +1,45 @@
+/*=================
+    Generales
+=================*/
 :root {
     --primary-yellow: #fae1a9;
     --primary-black: #20170e;
     --primary-purple: #8f5192;
     --primary-red: #d1411f;
     --primary-green: #abb751;
+
+    --mensaje-verde: #0a3622;
+    --fondo-verde: #d1e7dd;
+    --borde-verde: #a3cfbb;
+
+    --mensaje-rojo: #58151c;
+    --fondo-rojo: #f8d7da;
+    --borde-rojo: #f1aeb5;
 }
 
+.mensaje {
+    margin: 0 auto;
+    border: 1px solid;
+    padding: 20px 60px;
+    border-radius: 6px;
+}
+
+.error {
+    color: var(--mensaje-rojo);
+    background-color: var(--fondo-rojo);
+    border: 1px solid var(--borde-rojo);
+}
+
+.exito {
+    color: var(--mensaje-verde);
+    background-color: var(--fondo-verde);
+    border: 1px solid var(--borde-verde);
+}
+
+
+/*=================
+    Header
+=================*/
 header, #logo, .lista-nav {
     display: flex;
     align-items: center;
@@ -44,6 +78,7 @@ header nav {
     justify-content: space-around;
     width: 100%;
 }
+
 
 
 

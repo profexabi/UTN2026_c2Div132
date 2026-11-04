@@ -81,14 +81,25 @@
             event.preventDefault();
 
             // Extraemos el valor del campo id 
-            const idProd = event.target.idProd.value.trim();
+            const idProd = Number(event.target.idProd.value.trim());
             // console.log(idProd);
+
+            // Optimizacion 1: Filtramos en el cliente en caso de que no haya un id valido
+            if (!idProd || idProd <= 0) {
+                return mostrarMensaje("error", "Ingresa un id valido");
+            }
 
             try {
                 const response = await fetch(`${urlBase}/api/products/${idProd}`);
                 console.log(response);
 
                 const data = await response.json();
+
+                // Optimizacion 2: Para capturar errores 400 o 500, filtramos con !response.ok
+                if (!response.ok) {
+                    return mostrarMensaje("error", data.message);
+                }
+
                 const producto = data.payload[0];
 
                 renderizarProducto(producto);
@@ -144,11 +155,13 @@
                 const result = await response.json();
                 console.log(result);
 
-                console.log(result.message);
-                alert(result.message);
+                // Optimizacion 2: Para capturar errores 400 o 500, filtramos con !response.ok
+                if (!response.ok) {
+                    return mostrarMensaje("error", result.message);
+                }
 
-                // Limpiamos la pantalla (borramos el listado del producto que recien eliminamos)
-                contenedorProductos.innerHTML = "";
+                console.log(result.message);
+                mostrarMensaje("exito", result.message);
 
 
 
@@ -156,6 +169,14 @@
                 console.error("Error en la solicitud DELETE: ", error);
                 alert("Ocurrio un error al eliminar un producto")
             }
+        }
+
+
+        // Optimizacion 3: mostramos visualmente el error para que sea mas claro e intuitivo
+        function mostrarMensaje(estado, mensaje) {
+            contenedorProductos.innerHTML = `
+                <p class="mensaje ${estado}">${mensaje}</p>
+            `;
         }
 
     </script>

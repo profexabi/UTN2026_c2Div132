@@ -27,6 +27,22 @@ app.use((req, res, next) => {
 // Parseamos el JSON que enviamos en los formularios para recibirlos como objemos
 app.use(express.json()); // Parseamos el JSON recibido en el body automaticamente
 
+// Middleware para filtrar ids no validos
+const validateId = (req, res, next) => {
+	const id = Number(req.params.id); // Pasamos a number el id del parametro
+
+	// Si el id no es un numero entero o es <= 0
+	if (!Number.isInteger(id) || id <= 0) {
+		return res.status(404).json({
+			message: "El id debe ser un numero entero positivo"
+		})
+	}
+
+	req.id = id;
+	next();
+}
+
+
 
 /*=====================
 	Endpoints -> Combinacion entre URL + Verbo HTTP + Logica
@@ -40,32 +56,73 @@ app.get("/", (req, res) => {
 ///////////////////
 // GET all products -> Obtener todos los productos
 app.get("/api/products", async (req, res) => {
-	const [rows, tables] = await connection.query("SELECT * FROM products");
-	// console.log(rows);
+	// Optimizacion 1: Manejamos errores con try...catch
+	try {
+		// Optimizacion 2: Solo devolvemos los campos necesarios, no todo
+		const sql = "SELECT id, name, price, image FROM products";
+		const [rows, tables] = await connection.query(sql);
+		
+		// Optimizacion 3: Devolvemos 404 si no hay productos
+		if (rows.length === 0) {
+			return res.status(404).json({
+				message: "No se encontraron productos"
+			});
+		}
+	
+		res.status(200).json({
+			payload: rows,
+		});
 
-	res.status(200).json({
-		payload: rows
-	});
+	} catch (error) {
+		console.log("Error obteniendo productos: ", error);
+
+		// Optimizacion 4: Devolvemos error 500 si algo fallo en la conexion
+		// Ej: Fallo la conexion a la BBDD, tardo demasiado, la tabla no existe, error de sintaxis
+		res.status(500).json({
+			message: "Error interno del servidor al obtener productos"
+		})
+	}
 });
 
 
 
 ///////////////////
 // GET product by id -> Obtener producto por id
-app.get("/api/products/:id", async (req, res) => {
+app.get("/api/products/:id", validateId, async (req, res) => {
+	// Optimizacion 1: validamos el id y lo agregamos a req.id con el middleware validateId
 
-	const id = req.params.id;
-	// req.body -> de aca recibiremos la info de los <form>
-	// console.log(id);
+	// Optimizacion 2: manejo de errores con try...catch
+	try {
 
-	// Gracias a los ? (placeholders) nuestra consulta SQL es mas segura porque evitamos consultas vulnerables
-	const sql = "SELECT * FROM products WHERE products.id = ?";
-	const [rows] = await connection.query(sql, [id]);
+		// Optimizacion 3: Solo devolvemos los campos necesarios, no todo
+		// Gracias a los ? (placeholders) nuestra consulta SQL es mas segura porque evitamos consultas vulnerables
+		const sql = "SELECT id, name, price, image FROM products WHERE products.id = ?";
+		const [rows] = await connection.query(sql, [req.id]);
 
-	// console.log(rows);
-	res.status(200).json({
-		payload: rows
-	});
+
+		// Optimizacion 4: Devolvemos 404 si no existe producto con ese id
+		if (!rows.length) { // Forma mas optima? en lugar de rows.length === 0
+			return res.status(404).json({
+				message: `No se encontro producto con id ${req.id}`
+			});
+		}
+
+		// console.log(rows);
+		res.status(200).json({
+			payload: rows
+		});
+
+	} catch (error) {
+		console.log("Error obteniendo producto: ", error);
+
+		// Optimizacion 4: Devolvemos error 500 si algo fallo en la conexion
+		// Ej: Fallo la conexion a la BBDD, tardo demasiado, la tabla no existe, error de sintaxis
+		res.status(500).json({
+			message: "Error interno del servidor al obtener producto por id"
+		})
+	}
+
+	
 });
 
 
@@ -117,16 +174,28 @@ app.put("/api/products", async (req, res) => {
 
 ///////////////////
 // DELETE product -> Eliminar producto
-app.delete("/api/products/:id", async (req, res) => {
+app.delete("/api/products/:id", validateId, async (req, res) => {
+	// Optimizacion 1: Usar el middleware validateId
 
-	const id = req.params.id;
+	// Optimizacion 2: Manejo de errores
+	try {
+		const sql = "DELETE FROM products WHERE id = ?";
+		await connection.query(sql, [req.id]);
+	
+		res.status(200).json({
+			message: `Producto con id ${req.id} eliminado correctamente`
+		});
 
-	const sql = "DELETE FROM products WHERE id = ?";
-	await connection.query(sql, [id]);
+	} catch (error) {
+		console.log("Error eliminando producto: ", error);
 
-	res.status(200).json({
-		message: `Producto con id ${id} eliminado correctamente`
-	});
+		// Optimizacion 3: Devolvemos error 500 si algo fallo en la conexion
+		// Ej: Fallo la conexion a la BBDD, tardo demasiado, la tabla no existe, error de sintaxis
+		res.status(500).json({
+			message: "Error interno del servidor al eliminar producto"
+		});
+	}
+
 });
 
 

@@ -60,7 +60,7 @@
             <form id="getIdProductForm">
 
                 <label for="idProd">Id del producto</label>
-                <input type="number" name="idProd" id="idProd" required>
+                <input type="number" name="idProd" id="idProd" min="1" required>
 
                 <input type="submit" value="Consultar producto">
             </form>
@@ -81,20 +81,33 @@
             event.preventDefault();
 
             // Extraemos el valor del campo id 
-            const idProd = event.target.idProd.value.trim();
+            const idProd = Number(event.target.idProd.value.trim());
             // console.log(idProd);
+
+            // Optimizacion 1: Filtramos en el cliente en caso de que no haya un id valido
+            if (!idProd || idProd <= 0) {
+                return mostrarError("Ingresa un id valido");
+            }
 
             try {
                 const response = await fetch(`${urlBase}/api/products/${idProd}`);
                 console.log(response);
 
                 const data = await response.json();
-                const producto = data.payload[0];
 
+                // Optimizacion 2: Para capturar errores 400 o 500, filtramos con !response.ok
+                if (!response.ok) {
+                    mostrarError(data.message);
+                    return;
+                }
+
+
+                const producto = data.payload[0];
                 renderizarProducto(producto);
 
             } catch (error) {
                 console.error("Error al obtener producto: ", error.message);
+                mostrarError("Error de conexion con el servidor")
             }
         });
 
@@ -112,6 +125,14 @@
             `;
 
             contenedorProductos.innerHTML = htmlProducto
+        }
+
+
+        // Optimizacion 3: mostramos visualmente el error para que sea mas claro e intuitivo
+        function mostrarError(string) {
+            contenedorProductos.innerHTML = `
+                <p class="mensaje error">${string}</p>
+            `;
         }
 
     </script>
