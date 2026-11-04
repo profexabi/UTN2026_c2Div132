@@ -19,21 +19,21 @@
 
 .mensaje {
     margin: 0 auto;
-    border: 1px solid;
     padding: 20px 60px;
     border-radius: 6px;
+    margin-bottom: 10px;
 }
 
 .error {
     color: var(--mensaje-rojo);
     background-color: var(--fondo-rojo);
-    border: 1px solid var(--borde-rojo);
+    border: 2px solid var(--borde-rojo);
 }
 
 .exito {
     color: var(--mensaje-verde);
     background-color: var(--fondo-verde);
-    border: 1px solid var(--borde-verde);
+    border: 2px solid var(--borde-verde);
 }
 
 
