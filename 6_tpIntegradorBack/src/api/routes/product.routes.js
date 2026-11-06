@@ -1,8 +1,19 @@
+/*=======================
+	Rutas de producto
+=======================*/
+
 import { Router } from "express"; // Importamos el middleware Router para gestionar las rutas
 import { validateId, validateProduct } from "../middlewares/middlewares.js";
-import { createProduct, getAllProducts, getProductById, modifyProduct, removeProduct } from "../controllers/product.controllers.js";
+import { createProduct, getActiveProducts, getAllProducts, getProductById, modifyProduct, removeProduct } from "../controllers/product.controllers.js";
 
 const router = Router(); // Funciona igual que una miniaplicacion de express
+
+
+
+///////////////////
+// GET active products -> Obtener todos los productos activos
+
+router.get("/active", getActiveProducts);
 
 
 

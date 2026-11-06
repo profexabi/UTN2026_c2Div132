@@ -1,6 +1,7 @@
 /*=====================
-	Middlewares -> Funciones que se ejecutan entre la req y la res
+	Middlewares
 =====================*/
+// Funciones que se ejecutan entre la req y la res
 
 // Middleware logger para mostrar por consola las solicitudes de nuestro servidor
 const loggerUrl = (req, res, next) => {

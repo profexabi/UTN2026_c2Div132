@@ -53,6 +53,7 @@
         </nav>
     </header>
 
+    
     <main>
         <section class="getIdProduct-container">
 
@@ -216,6 +217,12 @@
 
                     <label for="priceProd">Precio</label>
                     <input type="number" name="price" id="priceProd" value="${producto.price}" required>
+
+                    <label for="activeProd">Activo</label>
+                    <select name="active" id="activeProd" required>
+                        <option value="1">Activado</option>
+                        <option value="0">Desactivado</option>
+                    </select>
 
                     <input type="submit" value="Actualizar producto">
 

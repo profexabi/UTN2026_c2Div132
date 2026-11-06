@@ -1,4 +1,36 @@
-import connection from "../database/db.js";
+/*===============================
+	Controladores de producto
+===============================*/
+import ProductModels from "../models/product.models.js"; // Importamos los modelos
+
+
+
+///////////////////
+// GET active products -> Obtener todos los productos activos
+export const getActiveProducts = async (req, res) => {
+    try {
+        const [rows] = await ProductModels.selectActiveProducts();
+
+        if (rows.length === 0) {
+            return res.status(404).json({
+                message: "No hay productos activos"
+            });
+        }
+
+
+        res.status(200).json({
+            payload: rows
+        })
+
+    } catch (error) {
+        console.log("Error obteniendo productos activos: ", error);
+
+        res.status(500).json({
+            message: "Error interno del servidor al obtener productos activos"
+        });
+    }
+}
+
 
 
 ///////////////////
@@ -7,9 +39,10 @@ import connection from "../database/db.js";
 export const getAllProducts = async (req, res) => {
     // Optimizacion 1: Manejamos errores con try...catch
     try {
-        // Optimizacion 2: Solo devolvemos los campos necesarios, no todo
-        const sql = "SELECT id, name, price, image FROM products";
-        const [rows, tables] = await connection.query(sql);
+        
+        // El controlador llama al modelo
+        const [rows, tables] = await ProductModels.selectAllProducts();
+
 
         // Optimizacion 3: Devolvemos 404 si no hay productos
         if (rows.length === 0) {
@@ -29,7 +62,7 @@ export const getAllProducts = async (req, res) => {
         // Ej: Fallo la conexion a la BBDD, tardo demasiado, la tabla no existe, error de sintaxis
         res.status(500).json({
             message: "Error interno del servidor al obtener productos"
-        })
+        });
     }
 }
 
@@ -44,10 +77,7 @@ export const getProductById = async (req, res) => {
     // Optimizacion 2: manejo de errores con try...catch
     try {
 
-        // Optimizacion 3: Solo devolvemos los campos necesarios, no todo
-        // Gracias a los ? (placeholders) nuestra consulta SQL es mas segura porque evitamos consultas vulnerables
-        const sql = "SELECT id, name, price, image FROM products WHERE products.id = ?";
-        const [rows] = await connection.query(sql, [req.id]);
+        const [rows] = await ProductModels.selectProductById(req.id);
 
 
         // Optimizacion 4: Devolvemos 404 si no existe producto con ese id
@@ -86,9 +116,8 @@ export const createProduct = async (req, res) => {
     try {
         const { category, image, name, price } = req.body;
 
-        const sql = "INSERT INTO products (name, image, category, price) VALUES (?, ?, ?, ?)"
+        const [rows] = await ProductModels.insertNewProduct(name, image, category, price);
 
-        const [rows] = await connection.query(sql, [name, image, category, price]);
 
         res.status(201).json({
             message: "Producto creado con exito",
@@ -116,11 +145,9 @@ export const modifyProduct = async (req, res) => {
 
     // Optimizacion 2: Manejamos los errores con try...catch 
     try {
-        const { id, name, image, price, category } = req.body;
+        const { id, name, image, price, category, active } = req.body;
 
-        const sql = "UPDATE products SET name = ?, image = ?, price = ?, category = ? WHERE id = ?";
-
-        const [result] = await connection.query(sql, [name, image, price, category, id]);
+        const [result] = await ProductModels.updateProduct(name, image, price, category, active, id);
 
         console.log(result);
 
@@ -157,8 +184,8 @@ export const removeProduct = async (req, res) => {
 
     // Optimizacion 2: Manejo de errores
     try {
-        const sql = "DELETE FROM products WHERE id = ?";
-        await connection.query(sql, [req.id]);
+        
+        await ProductModels.deleteProduct(req.id);
 
         res.status(200).json({
             message: `Producto con id ${req.id} eliminado correctamente`
