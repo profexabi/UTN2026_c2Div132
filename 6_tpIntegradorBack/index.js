@@ -5,7 +5,7 @@ import express from "express"; // Importamos express luego de instalarlo con npm
 import environments from "./src/api/config/environments.js";
 import cors from "cors";
 import { loggerUrl } from "./src/api/middlewares/middlewares.js";
-import { productRoutes } from "./src/api/routes/index.js";
+import { productRoutes, viewRoutes } from "./src/api/routes/index.js";
 import { __dirname, join } from "./src/api/utils/index.js";
 
 
@@ -37,17 +37,15 @@ app.use(express.static(join(__dirname, "src/public")));
 
 
 /*=====================
-	Endpoints -> Combinacion entre URL + Verbo HTTP + Logica
+	Rutas
 =====================*/
-app.get("/", (req, res) => {
-	res.send("Hola mundo desde un servidor de Express.js");
-});
-
-
-// Rutas API Rest
+// Rutas endpoints
 app.use("/api/products", productRoutes); // Ahora todas las peticiones que apunten a /api/products las redirigimos a product.routes
 
-// app.use("/dashboard", viewRoutes);
+// Rutas vistas
+app.use("/dashboard", viewRoutes); // Redirigimos las consultas a /dashboard a la ruta de vistas
+
+
 
 
 app.listen(PORT, () => {

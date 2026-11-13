@@ -1,0 +1,39 @@
+<%- include("partials/head.ejs") %>
+<%- include("partials/header.ejs") %>
+
+    <main>
+
+        <!-- Formulario POST product -->
+        <section class="createProduct-container">
+
+            <h2><%= about %></h2>
+
+            <form id="createProductForm">
+
+                <label for="categoryProd">Categoria</label>
+                <select name="category" id="categoryProd" required>
+                    <option value="food">Comida</option>
+                    <option value="drink">Bebida</option>
+                </select>
+
+                <label for="imageProd">Imagen</label>
+                <input type="text" name="image" id="imageProd" required>
+
+                <label for="nameProd">Nombre</label>
+                <input type="text" name="name" id="nameProd" required>
+
+                <label for="priceProd">Precio</label>
+                <input type="number" name="price" id="priceProd" required>
+
+                <input type="submit" value="Crear producto">
+
+            </form>
+
+        </section>
+
+        <section id="contenedor-productos"></section>
+    </main>
+
+    <script src="/js/post.js"></script>
+
+<%- include("partials/footer.ejs") %>

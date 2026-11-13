@@ -1,0 +1,28 @@
+<!-- Incluimos los fragmentos ejs de arriba -->
+<%- include("partials/head.ejs") %>
+<%- include("partials/header.ejs") %>
+
+
+    <main>
+        <!-- Contenedor de los productos que vengan de /api/products -->
+        <section id="contenedor-productos">
+
+            <!-- Ahora desde EJS ya puedo iterar directamente aca, sin necesidad de js adicional, el array de productos -->
+             <% listaProductos.forEach(producto => { %>
+                <div class="card-producto">
+
+                    <img class="card-img" src="<%=producto.image%>" alt="<%=producto.name%>">
+                    
+                    <h4><%=producto.name%></h4>
+                    
+                    <p>Id: <%=producto.id%></p>
+                    
+                    <p>$ <%=producto.price%></p>
+                </div>
+             <% }) %>
+             
+        </section>
+    </main>
+
+
+<%- include("partials/footer.ejs") %>

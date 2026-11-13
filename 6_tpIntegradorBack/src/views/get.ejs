@@ -1,0 +1,25 @@
+<%- include("partials/head.ejs") %>
+<%- include("partials/header.ejs") %>
+
+
+    <main>
+        <section class="getIdProduct-container">
+
+            <!-- Formulario GET product by id -->
+            <form id="getIdProductForm">
+
+                <label for="idProd">Id del producto</label>
+                <input type="number" name="idProd" id="idProd" min="1" required>
+
+                <input type="submit" value="Consultar producto">
+            </form>
+
+        </section>
+
+        <section id="contenedor-productos"></section>
+    </main>
+
+    <!-- Escribo la ruta del script desde public -->
+    <script src="/js/get.js"></script>
+
+<%- include("partials/footer.ejs") %>

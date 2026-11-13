@@ -1,7 +1,7 @@
 # Progra III Div132 2026 c2
 
-
-## *Fecha entrega TP Integrador -> hasta el viernes 4 diciembre 08:29*
+## *Fecha entrega TP Integrador -> hasta el viernes 27 noviembre 08:29*
+## *Recuperatorio TP Integrador -> hasta el viernes 4 diciembre 08:29*
 
 ## Entendiendo el backend
 - [Playlist de Programación Web de Todocode](https://www.youtube.com/watch?v=lC6JOQLIgp0&list=PLQxX2eiEaqbxx6Ds5bd1F6LZJo7_OnZhV)
@@ -9,6 +9,7 @@
     - Protocolo HTTP
     - Que es JSON
     - Que son las APIs
+
 
 - [Protocolo HTTP y Lenguaje HTML](https://www.youtube.com/watch?v=l6oF_RpBf64)
 
@@ -19,12 +20,6 @@
 - **1er parcial hasta JavaScript VI (Manipulacion del DOM)**
 - 1er Parcial sincronico: 16 - 08:30
 - Recuperatorio 1er parcial: 23 - 08:30 en tiempo de clase
-
-## Proxima clase
-- La tarea para la proxima clase sera tener instalado [Node.js y NPM](https://nodejs.org/es/download)
-
-- Publicar excel de grupos para el TP Integrador
-
 
 
 ---

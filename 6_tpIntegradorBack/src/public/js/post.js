@@ -1,0 +1,136 @@
+const contenedorProductos = document.getElementById("contenedor-productos");
+const createProductForm = document.getElementById("createProductForm");
+const urlBase = "http://localhost:3000";
+
+// Optimizacion 2: Validacion previa en el cliente
+function validarFormulario(data) {
+    const errores = []; // Array de errores
+
+    // Validacion name
+    if (!data.name || data.name.trim().length < 2) {
+        errores.push("El nombre debe tener al menos 2 caracteres");
+    }
+
+    // Validacion precio
+    if (!data.price || data.price < 0) {
+        errores.push("El precio debe ser un numero mayor a 0");
+    }
+
+    // Dejamos validacion image para cuando metamos Multer
+
+    // Validacion category
+    if (!data.category) {
+        errores.push("Debe seleccionar una categoria");
+    }
+
+    return errores;
+}
+
+
+// Optimizacion 3: Mostramos cada error del array como un parrafo independiente
+function mostrarListaErrores(array) {
+    let htmlErrores = "<div class='errores-container'>";
+
+    array.forEach(error => {
+        htmlErrores += `<p class="mensaje error">${error}</p>`;
+    });
+
+    htmlErrores += "</div>"
+
+    contenedorProductos.innerHTML = htmlErrores;
+}
+
+
+
+// Optimizacion 4: mostramos visualmente el mensaje (error o exito) para que sea mas claro e intuitivo
+function mostrarMensaje(estado, mensaje) {
+    contenedorProductos.innerHTML = `
+        <p class="mensaje ${estado}">${mensaje}</p>
+    `;
+}
+
+
+
+createProductForm.addEventListener("submit", async event => {
+    
+    // Evitamos el envio por defecto del formulario porque queremos enviarlo con JS
+    event.preventDefault();
+
+    /* Vamos a hacer algo distinto a la extraccion simple del valor idProd
+    // Extraemos el valor del campo id 
+    const idProd = event.target.idProd.value.trim();*/
+
+    const formData = new FormData(event.target);
+    console.log(formData); // FormData(4) { category → "food", image → "url...", name → "faina", price → "123" }
+
+    // Convertimos este objeto FormData en un objeto literal JavaScript
+    const formObj = Object.fromEntries(formData.entries());
+    console.log(formObj); 
+
+    // Optimizacion 1: Parseamos algunos datos para enviarlos en el formato correspondiente
+    formObj.price = Number(formObj.price); // Convertimos a number el precio
+    formObj.name = formObj.name.trim(); // Limpiamos los espacios en el nombre
+
+
+    // Optimizacion 2: Llamamos a la funcion de validacion
+    const errores = validarFormulario(formObj);
+    
+    // Optimizacion 3: Si hay errores, mostramos mensaje de error y terminamos aca
+    if (errores.length > 0) {
+        console.error(errores);
+        return mostrarListaErrores(errores);
+    }
+
+    try {
+        const response = await fetch(`${urlBase}/api/products`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formObj)
+        });
+
+        console.log(response);
+        /* Que recibiremos?
+
+        Response {
+            type: 'cors', 
+            url: 'http://localhost:3000/api/products', redirected: false, 
+            status: 201, 
+            ok: true
+            body: (...)
+            bodyUsed: 
+            true
+            headers: Headers {}
+            ok: true
+            redirected: false
+            status: 201
+            statusText: "Created"
+            type: "cors"
+            url: "http://localhost:3000/api/products"
+        }
+        
+        Sabemos que el endpoint nos respondera con un 201 Created
+        Tambien con el objeto message: "Producto creado con exito"
+
+        res.status(201).json({
+            message: "Producto creado con exito"
+        });
+
+        Como accedemos a este mensaje? Tenemos que parsear este JSON que esta dentro del cuerpo de la respuesta, es la instruccion que hacemos abajo: */
+        const data = await response.json();
+
+        // Optimizacion 4: Mostramos errores 400 o 500
+        if (!response.ok) {
+            return mostrarMensaje("error", data.message);
+        }
+
+        console.log(data.message); //"Producto creado con exito"
+        let mensajeCompleto = `${data.message} con id ${data.productId}`;
+        mostrarMensaje("exito", mensajeCompleto); // "Producto creado con exito"
+
+    } catch (error) {
+        console.error("Error al enviar los datos: ", error);
+        mostrarMensaje("error", "Error al enviar los datos");
+    }
+});

@@ -12,42 +12,36 @@ const router = Router(); // Funciona igual que una miniaplicacion de express
 
 ///////////////////
 // GET active products -> Obtener todos los productos activos
-
 router.get("/active", getActiveProducts);
 
 
 
 ///////////////////
 // GET all products -> Obtener todos los productos
-
 router.get("/", getAllProducts);
 
 
 
 ///////////////////
 // GET product by id -> Obtener producto por id
-
 router.get("/:id", validateId, getProductById);
 
 
 
 ///////////////////
 // POST product -> Crear producto
-
 router.post("/", validateProduct, createProduct);
 
 
 
 ///////////////////
 // PUT product -> Modificar producto
-
 router.put("/", validateProduct, modifyProduct);
 
 
 
 ///////////////////
 // DELETE product -> Eliminar producto
-
 router.delete("/:id", validateId, removeProduct);
 
 
