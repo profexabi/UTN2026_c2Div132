@@ -5,15 +5,17 @@ import express from "express"; // Importamos express luego de instalarlo con npm
 import environments from "./src/api/config/environments.js";
 import cors from "cors";
 import { loggerUrl } from "./src/api/middlewares/middlewares.js";
-import { productRoutes, viewRoutes } from "./src/api/routes/index.js";
+import { authRoutes, productRoutes, viewRoutes } from "./src/api/routes/index.js";
 import { __dirname, join } from "./src/api/utils/index.js";
+import session from "express-session";
 
 
 /*=====================
 	Config
 =====================*/
+const { port, session_key } = environments;
 const app = express(); // Creamos una instancia de aplicacion de express en app
-const PORT = environments.port;
+const PORT = port;
 
 app.set("view engine", "ejs"); // Configuramos EJS como motor de plantillas
 app.set("views", join(__dirname, "src/views")); // Apuntamos a la carpeta de las vistas de EJS
@@ -34,6 +36,17 @@ app.use(express.json()); // Parseamos el JSON recibido en el body automaticament
 // Middleware para servir archivos estaticos
 app.use(express.static(join(__dirname, "src/public")));
 
+app.use(express.urlencoded({extended: true})); // Parseamos el urlencoded enviando con los <form> HTML
+
+// Middleware de sesion
+app.use(session({
+	secret: session_key, // Contraseña que firma las cookies para evitar manipulacion
+	resave: false, // Evita guardar la sesion si no hubo cambios
+	saveUninitialized: true // No guarda sesiones vacias
+}));
+
+
+
 
 
 /*=====================
@@ -45,6 +58,9 @@ app.use("/api/products", productRoutes); // Ahora todas las peticiones que apunt
 // Rutas vistas
 app.use("/dashboard", viewRoutes); // Redirigimos las consultas a /dashboard a la ruta de vistas
 
+
+// Rutas autenticacion /login -> GET y POST /logout
+app.use("/", authRoutes);
 
 
 
