@@ -12,6 +12,7 @@ router.get("/", (req, res) => {
 })
 
 
+
 ///////////////////////
 // Vista del login
 router.get("/login", (req, res) => {
@@ -20,6 +21,7 @@ router.get("/login", (req, res) => {
         about: "Introduzca sus credenciales"
     })
 });
+
 
 
 //////////////////////////
@@ -81,7 +83,27 @@ router.post("/login", async (req, res) => {
             message: "Error interno del servidor al hacer login"
         });
     }
-})
+});
+
+
+
+//////////////////////////
+// Funcionalidad logout
+router.post("/logout", (req, res) => {
+    
+    // Destruimos la sesion existente
+    req.session.destroy((err) => {
+        if (err) {
+            console.log("Error al destruir la sesion: ", err);
+            return res.status(500).json({
+                message: "Error al destruir la sesion"
+            });
+        }
+
+        // Eliminada exitosamente la sesion, redirigimos a login
+        res.redirect("/login");
+    });
+});
 
 
 export default router;
