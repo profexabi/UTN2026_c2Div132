@@ -1,12 +1,12 @@
 <%- include("partials/head.ejs") %>
 <%- include("partials/header.ejs") %>
 
-    <main>
+    <main id="post-container">
 
         <!-- Formulario POST product -->
         <section class="createProduct-container">
 
-            <h2><%= about %></h2>
+            <h3> Crear producto</h3>
 
             <form id="createProductForm">
 
@@ -31,8 +31,46 @@
 
         </section>
 
-        <section id="contenedor-productos"></section>
+
+        <!-- Formulario POST user -->
+        <section class="createUser-container">
+
+            <h3> Crear usuario admin </h3>
+
+            <form id="createUserForm" action="/api/users" method="POST">
+
+                <label for="nameUser">Nombre</label>
+                <input type="text" name="name" id="nameUser" required>
+
+                <label for="emailUser">Email</label>
+		        <input type="email" name="email" id="emailUser" required>
+
+                <label for="passwordUser">Password</label>
+		        <input type="password" name="password" id="passwordUser" required>
+
+		        <input type="submit" value="Crear admin">
+
+            </form>
+
+        </section>
+
     </main>
+    
+    <div id="mensajes">
+        <!-- Si hay un mensaje de exito al crear un admin, lo muestro aca -->
+        <% if (typeof exito !== "undefined") { %>
+            <p class="mensaje exito centrado"> <%= exito %> </p>
+        <% } %>
+    
+        <!-- Si renderizo la plantilla post enviandole un error, se muestra aca -->
+        <% if (typeof error !== "undefined") { %>
+            <p class="mensaje error centrado"> <%= error %> </p>
+        <% } %>
+    </div>
+    
+
+
+    <section id="contenedor-productos"></section>
 
     <script src="/js/post.js"></script>
 

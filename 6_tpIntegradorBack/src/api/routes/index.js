@@ -2,11 +2,12 @@
 import productRoutes from "./product.routes.js"; // Importamos las rutas de product.routes con este nombre
 import viewRoutes from "./view.routes.js";
 import authRoutes from "./auth.routes.js"; // Importamos las vistas de autenticacion
-
+import userRoutes from "./user.routes.js";
 
 // Exportamos todas las rutas
 export {
     productRoutes,
     viewRoutes,
-    authRoutes
+    authRoutes,
+    userRoutes
 }

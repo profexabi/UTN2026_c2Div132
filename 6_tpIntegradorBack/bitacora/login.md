@@ -223,3 +223,22 @@ router.get("/eliminar", requireLogin, vistaEliminar);
 
 <%- include("partials/footer.ejs") %>
 ```
+
+---
+
+## 7 / Creamos el endpoint que reciba los datos de este formulario
+```js
+
+```
+
+
+---
+
+## 8 / Hacemos logout (form + endpoint)
+
+---
+
+## 9 / Agregamos [bcrypt](https://www.npmjs.com/package/bcrypt)
+1. Crear usuarios desde el formulario
+2. Incorporar `bcrypt` a la creacion de usuarios (hasheamos el password)
+3. Comparar el password hasheado cuando hacemos login

@@ -32,9 +32,8 @@ export const vistaConsultar = (req, res) => {
 // Vista crear
 export const vistaCrear = (req, res) => {
     res.render("post", {
-        title: "Crear producto",
-        about: "Crear nuevo producto"
-    })
+        title: "Crear",
+    });
 }
 
 

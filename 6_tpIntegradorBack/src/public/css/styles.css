@@ -131,6 +131,13 @@ header nav {
 /*====================
     Lista producto
 =====================*/
+
+#post-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
 .getIdProduct-container {
     width: 40%;
 }
@@ -163,4 +170,9 @@ header nav {
 .login-container {
     width: 30%;
     margin-top: 80px;
+}
+
+#mensajes {
+    width: 90%;
+    margin: 0 auto;
 }
