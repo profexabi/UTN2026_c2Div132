@@ -5,7 +5,7 @@ import express from "express"; // Importamos express luego de instalarlo con npm
 import environments from "./src/api/config/environments.js";
 import cors from "cors";
 import { loggerUrl } from "./src/api/middlewares/middlewares.js";
-import { authRoutes, productRoutes, userRoutes, viewRoutes } from "./src/api/routes/index.js";
+import { authRoutes, exportRoutes, productRoutes, saleRoutes, userRoutes, viewRoutes } from "./src/api/routes/index.js";
 import { __dirname, join } from "./src/api/utils/index.js";
 import session from "express-session";
 
@@ -52,14 +52,20 @@ app.use(session({
 /*=====================
 	Rutas
 =====================*/
-// Rutas endpoints
+// Rutas productos
 app.use("/api/products", productRoutes); // Ahora todas las peticiones que apunten a /api/products las redirigimos a product.routes
+
+// Rutas ventas
+app.use("/api/sales", saleRoutes);
 
 // Rutas de usuarios
 app.use("/api/users", userRoutes);
 
 // Rutas vistas
 app.use("/dashboard", viewRoutes); // Redirigimos las consultas a /dashboard a la ruta de vistas
+
+// Rutas de exportacion (excel)
+app.use("/export", exportRoutes); // TODO, agregar este endpoint a un boton de "Descarga excel productos"
 
 // Rutas autenticacion /login -> GET y POST /logout
 app.use("/", authRoutes);
